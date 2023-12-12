@@ -2,18 +2,35 @@
 /**
  * main - Entry point
  *
+ * @argc: number of arguments
+ * @argv: the arguments
+ * 
  * Return: 0
  *
  */
-int main(void)
+int main(int argc, char **argv)
 {
-	char *commands ;
+	char *line = NULL;
+	char **commands = NULL;
+	int status = 0;
+	(void)argc;
 
 	while (1)
 	{
-		/*write(STDOUT_FILENO, "$", strlen("$"));*/
-		read_command(commands, sizeof(commands));
-		execute_command(commands);
+		line = read_line();
+		if (line == NULL)
+		{
+			if (isatty(STDIN_FILENO))
+			{
+				write(STDOUT_FILENO, "\n ", 1);
+			}
+			return (status);
+		}
+		commands = read_command(line);
+		if (!commands)
+			continue;
+
+		status = execute_command(commands, argv);
 	}
 
 	return (0);

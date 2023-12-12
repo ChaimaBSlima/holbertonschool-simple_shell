@@ -1,72 +1,107 @@
 #include "simple_shell.h"
 /**
- * read_command - Read commands from user
+ * read_line - reading input from the user
  *
- * @command: command from the user
- * @size: size of the command
- * Return: Void
+ * Return: string value
  *
  */
-void read_command(char *command, size_t size)
+char *read_line(void)
 {
-	if (fgets(command, size, stdin) == NULL)
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t n;
+
+	if (isatty(STDIN_FILENO))
 	{
-		if (feof(stdin))
-		{
-			/*write(STDOUT_FILENO, "\n", strlen("\n"));*/
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
-			write(STDOUT_FILENO, "Error while reading input.\n",
-			 strlen("Error while reading input.\n"));
-			exit(EXIT_FAILURE);
-		}
+		write(STDOUT_FILENO, "$ ", 2);
 	}
-	command[strcspn(command, "\n")] = '\0';
+	n = getline(&line, &len, stdin);
+	if (n == -1)
+	{
+		free(line);
+		return (NULL);
+	}
+
+	return (line);
+}
+/**
+ * read_command - Read commands from user
+ *
+ * @line: the line of commands
+ *
+ * Return: array of strings
+ *
+ */
+char **read_command(char *line)
+{
+	char *token = NULL;
+	char **commands = NULL;
+	char *tmp = NULL;
+	int i = 0;
+	int j = 0;
+
+	if (!line)
+		return (NULL);
+	tmp = strdup(line);
+	token = strtok(line, DELIM);
+	if (token == NULL)
+	{
+		free(tmp), tmp = NULL;
+		free(line), line = NULL;
+		return (NULL);
+	}
+	while (token)
+	{
+		i++;
+		token = strtok(NULL, DELIM);
+	}
+	free(tmp), tmp = NULL;
+	commands = malloc(sizeof(char *) * (i + 1));
+	if (!commands)
+	{
+		free(line), line = NULL;
+		return (NULL);
+	}
+	token = strtok(line, DELIM);
+	while (token)
+	{
+		commands[j] = strdup(token);
+		token = strtok(NULL, DELIM);
+		j++;
+	}
+	free(line), line = NULL;
+	commands[j] = NULL;
+	return (commands);
 }
 /**
  * execute_command - excute the commands typed
  *  by the user
  *
- * @command: command type by the user
+ * @commands: the commands
+ * @argv: the arguments
  * Return: Void
  *
  */
-void execute_command(const char *command)
+int execute_command(char **commands, char **argv)
 {
 
-	__pid_t child_pid = fork();
+	pid_t child_pid;
+	int status;
 
-	if (child_pid == -1)
+	child_pid = fork();
+	if (child_pid == 0)
 	{
-		/*write(STDOUT_FILENO, "Error forking process.\n",
-		 strlen("Error forking process.\n"));*/
-		exit(EXIT_FAILURE);
-	}
-	else if (child_pid == 0)
-	{
-
-		char *args[128];
-		int arg_count = 0;
-		char *token = strtok((char *)command, " ");
-
-		while (token != NULL)
+		if (execve(commands[0], commands, environ) == -1)
 		{
-			args[arg_count++] = token;
-			token = strtok(NULL, " ");
+			perror(argv[0]);
+			freestring(commands);
+			exit(0);
 		}
-		args[arg_count] = NULL;
-
-
-		execvp(args[0], args);
-
-		write(STDOUT_FILENO, "Error executing command.\n",
-		strlen("Error executing command.\n"));
-		exit(EXIT_FAILURE);
 	}
-	/*else
+	else
 	{
-		wait(NULL);
-	}*/
+		waitpid(child_pid, &status, 0);
+		freestring(commands);
+	}
+	return (WEXITSTATUS(status));
 }

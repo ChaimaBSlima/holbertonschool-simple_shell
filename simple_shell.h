@@ -7,9 +7,21 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <fcntl.h>
 
-/*functions*/
-void execute_command(const char *command);
-void read_command(char *command, size_t size);
+/* Define constants */
+#define DELIM " \t\n"
+extern char **environ; 
+
+/*functions execute_commands.c */
+char *read_line(void);
+char **read_command(char *line);
+int execute_command(char **commands, char **argv);
+
+/* functions free_functions.c*/
+void freestring(char **str);
 
 #endif /* __SIMPLE__SHELL__ */

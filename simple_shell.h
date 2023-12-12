@@ -14,7 +14,7 @@
 
 /* Define constants */
 #define DELIM " \t\n"
-extern char **environ; 
+extern char **environ;
 
 /*functions execute_commands.c */
 char *read_line(void);

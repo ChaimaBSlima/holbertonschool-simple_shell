@@ -13,7 +13,10 @@ void freestring(char **str)
 	if (!str)
 		return;
 	for (i = 0; str[i]; i++)
-		free(str[i]), str[i] = NULL;
+	{
+		free(str[i]);
+		str[i] = NULL;
+	}
 	free(str);
 	str = NULL;
 }

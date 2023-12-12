@@ -15,5 +15,6 @@ int main(void)
 		read_command(commands, sizeof(commands));
 		execute_command(commands);
 	}
+	free (commands);
 	return (0);
 }

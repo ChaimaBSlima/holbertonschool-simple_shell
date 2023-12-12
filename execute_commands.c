@@ -65,8 +65,8 @@ void execute_command(const char *command)
 		strlen("Error executing command.\n"));
 		exit(EXIT_FAILURE);
 	}
-	else
+	/*else
 	{
 		wait(NULL);
-	}
+	}*/
 }

@@ -40,8 +40,8 @@ void execute_command(const char *command)
 
 	if (child_pid == -1)
 	{
-		write(STDOUT_FILENO, "Error forking process.\n",
-		 strlen("Error forking process.\n"));
+		/*write(STDOUT_FILENO, "Error forking process.\n",
+		 strlen("Error forking process.\n"));*/
 		exit(EXIT_FAILURE);
 	}
 	else if (child_pid == 0)

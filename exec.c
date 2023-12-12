@@ -11,7 +11,7 @@ int main(void)
 
 	while (1)
 	{
-		write(STDOUT_FILENO, "$", strlen("$"));
+		/*write(STDOUT_FILENO, "$", strlen("$"));*/
 		read_command(commands, sizeof(commands));
 		execute_command(commands);
 	}

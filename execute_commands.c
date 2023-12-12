@@ -13,7 +13,7 @@ void read_command(char *command, size_t size)
 	{
 		if (feof(stdin))
 		{
-			write(STDOUT_FILENO, "\n", strlen("\n"));
+			/*write(STDOUT_FILENO, "\n", strlen("\n"));*/
 			exit(EXIT_SUCCESS);
 		}
 		else

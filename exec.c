@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	char commands[120];
+	char **commands ;
 
 	while (1)
 	{
@@ -15,6 +15,6 @@ int main(void)
 		read_command(commands, sizeof(commands));
 		execute_command(commands);
 	}
-	free (commands);
+
 	return (0);
 }

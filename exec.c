@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	char **commands ;
+	char *commands ;
 
 	while (1)
 	{

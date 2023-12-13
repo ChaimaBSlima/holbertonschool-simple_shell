@@ -43,7 +43,7 @@ char **read_command(char *line)
 	if (!line)
 		return (NULL);
 	tmp = strdup(line);
-	token = strtok(line, DELIM);
+	token = strtok(tmp, DELIM);
 	if (token == NULL)
 	{
 		free(tmp), tmp = NULL;
@@ -79,10 +79,11 @@ char **read_command(char *line)
  *
  * @commands: the commands
  * @argv: the arguments
+ * @env: envirenment for execve
  * Return: Void
  *
  */
-int execute_command(char **commands, char **argv)
+int execute_command(char **commands, char **argv, char **env)
 {
 
 	pid_t child_pid;
@@ -91,7 +92,7 @@ int execute_command(char **commands, char **argv)
 	child_pid = fork();
 	if (child_pid == 0)
 	{
-		if (execve(commands[0], commands, environ) == -1)
+		if (execve(commands[0], commands, env) == -1)
 		{
 			perror(argv[0]);
 			freestring(commands);

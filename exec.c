@@ -4,11 +4,12 @@
  *
  * @argc: number of arguments
  * @argv: the arguments
+ * @env: envirenment
  *
  * Return: 0
  *
  */
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **env)
 {
 	char *line = NULL;
 	char **commands = NULL;
@@ -30,6 +31,6 @@ int main(int argc, char **argv)
 		if (!commands)
 			continue;
 
-		status = execute_command(commands, argv);
+		status = execute_command(commands, argv, env);
 	}
 }

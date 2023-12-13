@@ -10,16 +10,17 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <fcntl.h>
 
 /* Define constants */
 #define DELIM " \t\n"
-extern char **environ;
+/* extern char **environ */
 
 /*functions execute_commands.c */
 char *read_line(void);
 char **read_command(char *line);
-int execute_command(char **commands, char **argv);
+int execute_command(char **commands, char **argv, char **env);
 
 /* functions free_functions.c*/
 void freestring(char **str);

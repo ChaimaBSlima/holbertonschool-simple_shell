@@ -80,29 +80,40 @@ char **read_command(char *line)
  * @commands: the commands
  * @argv: the arguments
  * @env: envirenment for execve
- * Return: Void
+ * @index: number of commands typed
+ *
+ * Return: status value
  *
  */
-int execute_command(char **commands, char **argv, char **env)
+int execute_command(char **commands, char **argv, char **env, int index)
 {
 
+	char *the_real_command;
 	pid_t child_pid;
 	int status;
+
+	the_real_command = _getpath(commands[0]);
+	if (!the_real_command)
+	{
+		PrintNotFoundError(argv[0], commands[0], index);
+		freestring(commands);
+		return (127);
+	}
 
 	child_pid = fork();
 	if (child_pid == 0)
 	{
-		if (execve(commands[0], commands, env) == -1)
+		if (execve(the_real_command, commands, env) == -1)
 		{
-			perror(argv[0]);
+			free(the_real_command), the_real_command = NULL;
 			freestring(commands);
-			exit(0);
 		}
 	}
 	else
 	{
 		waitpid(child_pid, &status, 0);
 		freestring(commands);
+		free(the_real_command), the_real_command = NULL;
 	}
 	return (WEXITSTATUS(status));
 }

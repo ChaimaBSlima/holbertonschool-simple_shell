@@ -13,7 +13,7 @@ int main(int argc, char **argv, char **env)
 {
 	char *line = NULL;
 	char **commands = NULL;
-	int status = 0;
+	int status = 0, index = 0;
 	(void)argc;
 
 	while (1)
@@ -27,10 +27,11 @@ int main(int argc, char **argv, char **env)
 			}
 			return (status);
 		}
+		index++;
 		commands = read_command(line);
 		if (!commands)
 			continue;
 
-		status = execute_command(commands, argv, env);
+		status = execute_command(commands, argv, env, index);
 	}
 }

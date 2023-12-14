@@ -2,7 +2,7 @@
 /**
  * freestring - a function that frees array of strings
  *
- * @str : the array of strings
+ * @str: the array of strings
  *
  * Return: void
  */

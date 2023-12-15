@@ -46,10 +46,6 @@ char *_getpath(char *command)
 			the_real_command = NULL;
 			directory = strtok(NULL, ":");
 		}
-		else
-		{
-			return (NULL);
-		}
 	}
 	free(the_path);
 	return (NULL);

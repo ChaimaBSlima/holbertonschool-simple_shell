@@ -26,7 +26,7 @@ char *_getpath(char *command)
 		}
 	}
 	the_path = _getenv("PATH");
-	if (!the_path)
+	if (the_path == NULL)
 		return (NULL);
 	directory = strtok(the_path, ":");
 	while (directory)
@@ -45,6 +45,10 @@ char *_getpath(char *command)
 			free(the_real_command);
 			the_real_command = NULL;
 			directory = strtok(NULL, ":");
+		}
+		else
+		{
+			return (NULL);
 		}
 	}
 	free(the_path);

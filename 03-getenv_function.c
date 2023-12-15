@@ -17,19 +17,21 @@ char *_getenv(char *name)
 	char *temp, *key, *value;
 	char *real_value;
 
-	for (i = 0; environ[i]; i++)
+	for (i = 0; environ && environ[i]; i++)
 	{
 		temp = strdup(environ[i]);
 		key = strtok(temp, "=");
 		if (strcmp(key, name) == 0)
 		{
 			real_value = strtok(NULL, "\n");
-			value = strdup(real_value);
-			free(temp);
-			return (value);
+			if (real_value)
+			{
+				value = strdup(real_value);
+				free(temp);
+				return value;
+			}
 		}
 		free(temp), temp = NULL;
 	}
 	return (NULL);
 }
-

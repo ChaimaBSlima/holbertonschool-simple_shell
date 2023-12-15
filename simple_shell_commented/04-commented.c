@@ -20,7 +20,7 @@ char *_getpath(char *command)
     int i;
 
 
-    /*A loop if the command is already a path (not a command)*/
+    /* A loop if the command is already a path (not a command) */
     for (i = 0; command[i]; i++)
     {
         if (command[i] == '/')

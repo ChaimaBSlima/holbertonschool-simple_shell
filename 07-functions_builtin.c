@@ -29,7 +29,6 @@ void print_env(char **command, int *status)
 {
 	int i;
 
-	(void)status;
 	for (i = 0; environ[i]; i++)
 	{
 		write(STDOUT_FILENO, environ[i], strlen(environ[i]));

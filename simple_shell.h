@@ -38,4 +38,9 @@ void PrintNotFoundError(char *shellname, char *typed_command, int index);
 char *ConvertIntToStr(int n);
 void reverse_str(char *str, int len);
 
+/* functions of file 07-functions_builtin.c */
+void exit_shell (char **command, int *status);
+void print_env(char **command, int *status);
+
+
 #endif /* __SIMPLE__SHELL__ */

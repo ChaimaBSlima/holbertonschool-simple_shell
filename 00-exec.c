@@ -32,6 +32,11 @@ int main(int argc, char **argv, char **env)
 		if (!commands)
 			continue;
 
-		status = execute_command(commands, argv, env, index);
+		if (strcmp("exit", commands[0]) == 0)
+			exit_shell(commands, &status);
+		else if (strcmp("env", commands[0]) == 0)
+			print_env(commands, &status);
+		else
+			status = execute_command(commands, argv, env, index);
 	}
 }

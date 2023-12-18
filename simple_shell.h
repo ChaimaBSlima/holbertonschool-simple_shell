@@ -42,5 +42,7 @@ void reverse_str(char *str, int len);
 void exit_shell (char **command, int *status);
 void print_env(char **command, int *status);
 
+/* functions of file 08-my_strtok.c */
+char *my_strtok(char *str, const char *delim);
 
 #endif /* __SIMPLE__SHELL__ */

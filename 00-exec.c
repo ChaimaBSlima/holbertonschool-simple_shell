@@ -33,7 +33,7 @@ int main(int argc, char **argv, char **env)
 			continue;
 
 		if (strcmp("exit", commands[0]) == 0)
-			exit_shell(commands, &status);
+			exit_shell(commands, argv, &status, index);
 		else if (strcmp("env", commands[0]) == 0)
 			print_env(commands, &status);
 		else

@@ -43,7 +43,7 @@ char **read_command(char *line)
 	if (!line)
 		return (NULL);
 	tmp = strdup(line);
-	token = strtok(tmp, DELIM);
+	token = my_strtok(tmp, DELIM);
 	if (token == NULL)
 	{
 		free(tmp), tmp = NULL;
@@ -53,7 +53,7 @@ char **read_command(char *line)
 	while (token)
 	{
 		i++;
-		token = strtok(NULL, DELIM);
+		token = my_strtok(NULL, DELIM);
 	}
 	free(tmp), tmp = NULL;
 	commands = malloc(sizeof(char *) * (i + 1));
@@ -62,11 +62,11 @@ char **read_command(char *line)
 		free(line), line = NULL;
 		return (NULL);
 	}
-	token = strtok(line, DELIM);
+	token = my_strtok(line, DELIM);
 	while (token)
 	{
 		commands[j] = strdup(token);
-		token = strtok(NULL, DELIM);
+		token = my_strtok(NULL, DELIM);
 		j++;
 	}
 	free(line), line = NULL;

@@ -20,15 +20,15 @@ char *_getenv(char *name)
 	for (i = 0; environ && environ[i]; i++)
 	{
 		temp = strdup(environ[i]);
-		key = strtok(temp, "=");
+		key = my_strtok(temp, "=");
 		if (strcmp(key, name) == 0)
 		{
-			real_value = strtok(NULL, "\n");
+			real_value = my_strtok(NULL, "\n");
 			if (real_value)
 			{
 				value = strdup(real_value);
 				free(temp);
-				return value;
+				return (value);
 			}
 		}
 		free(temp), temp = NULL;

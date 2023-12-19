@@ -37,10 +37,10 @@ All files will be compiled with the following: `$ gcc -Wall -Werror -Wextra -ped
 | `pwd` | given you the current working directory.|
 
 # Builtins
-
-* `env` - The env command is a command that tells the shell program to display all of the environment variables with their values. It is a    way to access those values through the shell.
-
-* `exit` - If you wish to exit out of the shell the user can use the builtin `exit`.
+|Builtins  |  Description                |
+| :-------- |  :------------------------- |
+|`env` | The env command is a command that tells the shell program to display all of the environment variables with their values. It is a    way to access those values through the shell.|
+| `exit` | If you wish to exit out of the shell the user can use the builtin `exit`.|
 
 # Exiting commands and the shell
 To exit out of a command or process the user can use `ctrl c`. `Control c` stops a process and causes it to abort.

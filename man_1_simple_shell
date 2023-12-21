@@ -1,0 +1,92 @@
+.TH Shell 1 "19 december 2023" "version 1.0" "Programmer's Manual"
+
+
+
+.SH NAME
+.B Simple Shell (hsh)
+- command interpreter (shell)
+
+
+.SH SYNOPSIS
+.PP
+.B ./hsh
+
+
+
+.PP
+.B 
+.SH DESCRIPTION
+The Simple shell is a command that reads lines from either a file or the termi- \
+nal, interprets them, and generally executes other commands. It is the \ 
+program that is running when a user logs into the system. The shell implements a language \ 
+that has flow control contructs, a macro facility that provides a variety of features in addition to data \storage, along withe built in history and line editing capabilities. It also has features to \
+aid interactive use and has the advantage that the interpretative language is common to both interactive\ and non-interactive use (shell scripts). Commands can be typed directly to the running shell or can be put\ into a file and the file can be executed directly by the shell.
+.PP
+.SH EXAMPLE:
+$PATH:
+.PP
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
+
+
+
+.PP
+Simple shell has two builtinin commands it also integrates with other commands \
+that can be located in the PATH. The output of ghost shell is to replicate \
+exactly as the shell 'sh' or 'bash'.
+.PP
+.B $ man bash
+. Ghost Shell\
+The simple shell takes commands from files, shell scripts and user input in both interactive or non-interactive mode.
+
+.SH INITIALIZATION
+To use the simple shell the user needs to compile \
+using: gcc. The run the output file by calling it whether \
+by the output name it was given. 
+.PP
+.B EX: $ ./some_name or $ a./a.out.\
+.PP
+.SH The simple shell will compile with the following:
+gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
+
+
+.PP
+If the user inputs piplines or calls  non-interactive mode the simple shell should\
+funciton and execute said commands. An example of non-interactive mode input:
+.PP
+.B $ echo 'ls -a' | ./hsh
+.PP
+.PP
+.RE 
+.SH Another example of non interactive mode:
+.PP
+.B $ cat some_file | ./hsh
+.PP
+
+
+.SH OPTIONS
+The simple shell does not take any options but does utilize \
+extern char **environ. 
+
+ 
+
+
+
+.B
+.PP
+.SH BUILT-INS
+.PP
+.B There are two builtins in the shell.\
+
+.PP
+env - tells the program to display all of the environment variables with thier values. \
+Also a way to access the values through the shell.
+.PP
+exit - To exit out of the shell user can utilize exit. Exits program with status 0.\
+
+.SH SEE ALSO
+.Wait for future updates.
+.SH BUGS
+If there is any bug contact me on my school mail <7689@holbertonstudents.com>
+.SH AUTHORS
+.Chaima Ben Slima school mail :<7689@holbertonstudents.com>
+professional mail : <chaimabslima@outlook.fr>

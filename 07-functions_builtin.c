@@ -53,3 +53,43 @@ void print_env(char **command, int *status)
 	freestring(command);
 	(*status) = 0;
 }
+/**
+ * change_directory - change the directory
+ *
+ * @commands: array of strings
+ *
+ * Return: status
+ *
+ */
+int change_directory(char **commands)
+{
+	char *new_directory = commands[1];
+	char cwd[4096];
+
+	if (new_directory == NULL)
+	{
+		new_directory = _getenv("HOME");
+		if (new_directory == NULL)
+		{
+			fprintf(stderr, "cd: HOME not set\n");
+			return (1);
+		}
+	}
+	if (chdir(new_directory) != 0)
+	{
+		perror("cd");
+		return (1);
+	}
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
+	{
+		perror("getcwd");
+		return (1);
+	}
+
+	if (setenv("PWD", cwd, 1) != 0)
+	{
+		perror("setenv");
+		return (1);
+	}
+	return (0);
+}

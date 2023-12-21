@@ -37,6 +37,8 @@ int main(int argc, char **argv, char **env)
 			exit_shell(commands, argv, &status, index);
 		else if (strcmp("env", commands[0]) == 0)
 			print_env(commands, &status);
+		else if (strcmp("cd", commands[0]) == 0)
+			status = change_directory(commands);
 		else
 			status = execute_command(commands, argv, env, index);
 	}

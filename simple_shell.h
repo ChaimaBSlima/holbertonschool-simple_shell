@@ -12,6 +12,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <signal.h>
 
 /* Define constants */
 #define DELIM " \t\n"
@@ -42,8 +43,13 @@ void reverse_str(char *str, int len);
 /* functions of file 07-functions_builtin.c */
 void exit_shell(char **command, char **argv, int *status, int index);
 void print_env(char **command, int *status);
+int change_directory(char **commands);
 
 /* functions of file 08-my_strtok.c */
 char *my_strtok(char *str, const char *delim);
+
+/* functions of file 09-signal_handler.c */
+void sigint_handler(int i);
+
 
 #endif /* __SIMPLE__SHELL__ */

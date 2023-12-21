@@ -45,7 +45,6 @@ All files will be compiled with the following: `$ gcc -Wall -Werror -Wextra -ped
 | `exit` | If you wish to exit out of the shell the user can use the builtin `exit`.|
 
 # Exiting commands and the shell
-To exit out of a command or process the user can use `ctrl c`. `Control c` stops a process and causes it to abort.
 The user can also utilize the command `ctrl D` which will just exit. When the command `ctrl D` is used an exit status of NULL is given. Using exit, you can input its exit status or it is defaulted to the status of the last command executed.
 
 # Files

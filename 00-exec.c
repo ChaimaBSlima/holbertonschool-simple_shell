@@ -16,6 +16,7 @@ int main(int argc, char **argv, char **env)
 	int status = 0, index = 0;
 	(void)argc;
 
+	signal(SIGINT, sigint_handler);
 	while (1)
 	{
 		line = read_line();

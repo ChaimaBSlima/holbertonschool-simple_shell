@@ -76,7 +76,7 @@ void change_directory(char **cmd, int *status, int idx, char **av)
         }
         else
         {
-            (*status) = 139;
+            (*status) = 0;
         }
 	}
 	else

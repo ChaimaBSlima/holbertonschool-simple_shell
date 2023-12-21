@@ -67,13 +67,17 @@ void print_env(char **command, int *status)
 void change_directory(char **cmd, int *status, int idx, char **av)
 {
 	(*status) = 0;
-	if (strcmp(cmd[1], "") == 0)
+	if (cmd[1] == NULL) 
 	{
-		if (chdir("/") == -1)
-		{
-			PrintNotFoundError(av[0], cmd[0], idx);
-			(*status) = 0;
-		}
+        if (chdir(_getenv("HOME")) == -1)
+        {
+            PrintCantCdToError(av[0], cmd[1], idx);
+            (*status) = 2; 
+        }
+        else
+        {
+            (*status) = 139;
+        }
 	}
 	else
 	{

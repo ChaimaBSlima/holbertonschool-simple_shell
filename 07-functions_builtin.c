@@ -36,7 +36,7 @@ void exit_shell(char **command, char **argv, int *status, int index)
  * handle the env function
  *
  * @command: the exit command
- * @status: the staus
+ * @status: the status
  *
  * Return: void
  *
@@ -57,39 +57,31 @@ void print_env(char **command, int *status)
  * change_directory - change the directory
  *
  * @commands: array of strings
+ * @status: the status
+ * @index: the index
+ * @argv: argv[0] needed
  *
  * Return: status
  *
  */
-int change_directory(char **commands)
+void change_directory(char **cmd, int *status, int idx, char **av)
 {
-	char *new_directory = commands[1];
-	char cwd[4096];
-
-	if (new_directory == NULL)
+	(*status) = 0;
+	if (strcmp(cmd[1], "") == 0)
 	{
-		new_directory = _getenv("HOME");
-		if (new_directory == NULL)
+		if (chdir("/") == -1)
 		{
-			fprintf(stderr, "cd: HOME not set\n");
-			return (1);
+			PrintNotFoundError(av[0], cmd[0], idx);
+			(*status) = 0;
 		}
 	}
-	if (chdir(new_directory) != 0)
+	else
 	{
-		perror("cd");
-		return (1);
+		if (chdir(cmd[1]) == -1)
+		{
+			 PrintCantCdToError(av[0], cmd[1], idx);
+			(*status) = 0;
+		}
 	}
-	if (getcwd(cwd, sizeof(cwd)) == NULL)
-	{
-		perror("getcwd");
-		return (1);
-	}
-
-	if (setenv("PWD", cwd, 1) != 0)
-	{
-		perror("setenv");
-		return (1);
-	}
-	return (0);
+	freestring(cmd);
 }

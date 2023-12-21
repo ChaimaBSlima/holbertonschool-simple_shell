@@ -35,6 +35,7 @@ char *_getpath(char *command);
 /* functions of file 05-errors_functions.c */
 void PrintNotFoundError(char *shellname, char *typed_command, int index);
 void PrintIllegalNumberError(char *shellname, char *typed_command, int index);
+void PrintCantCdToError(char *shellname, char *typed_command, int index);
 
 /* functions of file 06-functions_to_use.c */
 char *ConvertIntToStr(int n);
@@ -43,7 +44,7 @@ void reverse_str(char *str, int len);
 /* functions of file 07-functions_builtin.c */
 void exit_shell(char **command, char **argv, int *status, int index);
 void print_env(char **command, int *status);
-int change_directory(char **commands);
+void change_directory(char **cmd, int *status, int idx, char **av);
 
 /* functions of file 08-my_strtok.c */
 char *my_strtok(char *str, const char *delim);

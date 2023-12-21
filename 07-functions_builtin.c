@@ -52,40 +52,6 @@ void print_env(char **command, int *status)
 	}
 	freestring(command);
 	(*status) = 0;
-}
-/**
- * change_directory - change the directory
- *
- * @commands: array of strings
- * @status: the status
- * @index: the index
- * @argv: argv[0] needed
- *
- * Return: status
- *
- */
-void change_directory(char **cmd, int *status, int idx, char **av)
-{
-	(*status) = 0;
-	if (cmd[1] == NULL) 
-	{
-        if (chdir(_getenv("HOME")) == -1)
-        {
-            PrintCantCdToError(av[0], cmd[1], idx);
-            (*status) = 2; 
-        }
-        else
-        {
-            (*status) = 0;
-        }
-	}
-	else
-	{
-		if (chdir(cmd[1]) == -1)
-		{
-			 PrintCantCdToError(av[0], cmd[1], idx);
-			(*status) = 0;
-		}
-	}
-	freestring(cmd);
+
+	
 }

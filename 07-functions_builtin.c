@@ -9,7 +9,6 @@
  * @index: the index
  *
  * Return: void
- *
  */
 void exit_shell(char **command, char **argv, int *status, int index)
 {

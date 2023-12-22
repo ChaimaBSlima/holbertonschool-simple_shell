@@ -14,25 +14,25 @@
 #include <fcntl.h>
 #include <signal.h>
 
-/* Define constants */
+/* Define constants  */
 #define DELIM " \t\n"
 extern char **environ;
 
-/* functions of file : 01-execute_commands.c */
+/* functions of file : 01-execute_commands.c  */
 char *read_line(void);
 char **read_command(char *line);
 int execute_command(char **commands, char **argv, char **env, int index);
 
-/* functions of file 02-free_functions.c */
+/* functions of file 02-free_functions.c  */
 void freestring(char **str);
 
-/* prototype from file 03-getenv_function.c */
+/* prototype from file 03-getenv_function.c  */
 char *_getenv(char *name);
 
-/* prototype from file 04-getpath_function.c */
+/* prototype from file 04-getpath_function.c  */
 char *_getpath(char *command);
 
-/* functions of file 05-errors_functions.c */
+/* functions of file 05-errors_functions.c  */
 void PrintNotFoundError(char *shellname, char *typed_command, int index);
 void PrintIllegalNumberError(char *shellname, char *typed_command, int index);
 void PrintCantCdToError(char *shellname, char *typed_command, int index);
